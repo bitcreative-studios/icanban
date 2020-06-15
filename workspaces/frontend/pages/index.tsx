@@ -18,15 +18,6 @@ const content = {
 
 const Home: NextPage<{}> = () => (
   <div style={content}>
-    <div className="text-center mb-5">
-      <Link href="#">
-        <a className="logo mr-0">
-          <SmileFilled size={48} strokeWidth={1} />
-        </a>
-      </Link>
-
-      <p className="mb-0 mt-3 text-disabled">Welcome to the world !</p>
-    </div>
     <div>
       <Form layout="horizontal">
         <FormItem
@@ -88,9 +79,11 @@ const Home: NextPage<{}> = () => (
           <DatePicker name="startDate" />
         </FormItem>
         <FormItem style={{ marginTop: 48 }} wrapperCol={{ span: 8, offset: 8 }}>
-          <Button size="large" type="primary" htmlType="submit">
-            OK
-          </Button>
+          <Link href="/dashboard">
+            <Button size="large" type="primary" htmlType="submit">
+              NextPage
+            </Button>
+          </Link>
           <Button size="large" style={{ marginLeft: 8 }}>
             Cancel
           </Button>

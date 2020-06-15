@@ -1,5 +1,17 @@
+// if (typeof require !== 'undefined') {
+//   require.extensions['.less'] = file => {};
+// }
+const withPlugins = require('next-compose-plugins')
 const withBundleAnalyzer = require('@next/bundle-analyzer')
+const withLess = require('@zeit/next-less')
+const withCSS = require('@zeit/next-css')
+const _ = require('lodash')
 
+/**
+ *
+ * @param plugins
+ * @return {{webpack(*, {isServer: *}): *, webpackDevMiddleware(*=): *}}
+ */
 const compose = plugins => ({
   webpack(config, { isServer }) {
     const antStyles = /antd\/.*?\/style\/css.*?/
@@ -40,11 +52,20 @@ const compose = plugins => ({
   },
 })
 
-module.exports = compose([
-  [
-    withBundleAnalyzer,
-    {
-      enabled: process.env.ANALYZE === 'true',
-    },
-  ],
-])
+const lessLoaderOptions = { lessLoaderOptions: { javaEnabled: true } }
+
+module.exports = withPlugins(
+  [[withLess], [withCSS]],
+  _.merge(
+    {},
+    { lessLoaderOptions: { javascriptEnabled: true } },
+    compose([
+      [
+        withBundleAnalyzer,
+        {
+          enabled: process.env.ANALYZE === 'true',
+        },
+      ],
+    ])
+  )
+)
