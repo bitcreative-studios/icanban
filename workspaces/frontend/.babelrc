@@ -5,8 +5,7 @@
       "import",
       {
         "libraryName": "antd",
-        "libraryDirectory": "lib",
-        "style": "index.css"
+        "style": "css"
       }
     ],
     [
