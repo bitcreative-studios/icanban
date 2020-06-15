@@ -52,13 +52,13 @@ const compose = plugins => ({
   },
 })
 
-const lessLoaderOptions = { lessLoaderOptions: { javaEnabled: true } }
+const lessLoaderOptions = { lessLoaderOptions: { javascriptEnabled: true } }
 
 module.exports = withPlugins(
   [[withLess], [withCSS]],
   _.merge(
     {},
-    { lessLoaderOptions: { javascriptEnabled: true } },
+    lessLoaderOptions,
     compose([
       [
         withBundleAnalyzer,
