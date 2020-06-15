@@ -1,0 +1,51 @@
+{
+  "name": "root",
+  "version": "1.0.0",
+  "author": "George Bockari <bitwhys@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "repository": "git@github.com:bitcreative-studios/icanban.git",
+  "scripts": {
+    "clean": "lerna clean --yes && rimraf node_modules",
+    "clean:build": "lerna exec -- rimraf \"{.next,dist,out,build,.docz,.cache,public}\"",
+    "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
+    "format:staged": "prettier --write",
+    "prebuild": "yarn clean:build",
+    "dev": "lerna run --parallel dev",
+    "build": "yarn workspaces run build"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "yarn format:staged"
+    ],
+    "*.md": [
+      "yarn format:staged"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "cz-conventional-changelog": "3.2.0",
+    "husky": "^4.2.5",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.2.10",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
