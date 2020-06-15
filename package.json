@@ -5,6 +5,9 @@
   "license": "MIT",
   "private": true,
   "repository": "git@github.com:bitcreative-studios/icanban.git",
+  "workspaces": [
+    "workspaces/*"
+  ],
   "scripts": {
     "clean": "lerna clean --yes && rimraf node_modules",
     "clean:build": "lerna exec -- rimraf \"{.next,dist,out,build,.docz,.cache,public}\"",
